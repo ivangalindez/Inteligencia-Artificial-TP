@@ -1,6 +1,5 @@
 from simpleai.search import breadth_first, SearchProblem, astar, greedy, depth_first
-
-#from simpleai.search.viewers import WebViewer
+from simpleai.search.viewers import BaseViewer
 
 Enemigos = ((0,2,4,6),
             (4, ),
@@ -13,8 +12,9 @@ Enemigos = ((0,2,4,6),
             (2,4,9),
             (1,4,6,7))
 
-META = (0,9)
+Rey = (5,3)
 
+META = (0,9)
 
 class HnefataflProblem(SearchProblem):
     def cost(self, state1, action, state2):
@@ -29,7 +29,7 @@ class HnefataflProblem(SearchProblem):
         acciones = []
         filaRey, columnaRey = state
 
-        #MoverseArriba(filaRey, columnaRey)
+        #MoverseArriba
         if columnaRey not in Enemigos[filaRey - 1]:
             enemigosAdyacentes = 0
             if (filaRey > 1) and (columnaRey in Enemigos[filaRey - 2]):
@@ -83,30 +83,67 @@ class HnefataflProblem(SearchProblem):
 
     def heuristic(self, state):
         filaRey, columnaRey = state
-        return min(filaRey, 9 - filaRey, columnaRey, 9 - columnaRey)
-
+        return min(filaRey, 9 - filaRey, columnaRey, 9 - columnaRey) #Devuelve la cantidad de pasos que me faltan al borde mas cercano
 
 def resolver(metodo_busqueda, posicion_rey, controlar_estados_repetidos):
     problema = HnefataflProblem(posicion_rey)
+    visor = BaseViewer()
     if metodo_busqueda == "breadth_first":
-        return breadth_first(problema, graph_search=controlar_estados_repetidos)
-    if metodo_busqueda == "astar":
-        return astar(problema, graph_search=controlar_estados_repetidos)
-    if metodo_busqueda == "greedy":
-        return greedy(problema, graph_search=controlar_estados_repetidos)
+        resultado = breadth_first(problema, graph_search=controlar_estados_repetidos)
+        return resultado
     if metodo_busqueda == "depth_first":
         return depth_first(problema, graph_search=controlar_estados_repetidos)
+    if metodo_busqueda == "greedy":
+        return greedy(problema, graph_search=controlar_estados_repetidos)
+    if metodo_busqueda == "astar":
+        return astar(problema, graph_search=controlar_estados_repetidos)
 
-#if __name__ == '__main__':
+if __name__ == '__main__':
+    # Amplitud en arbol
+    # problema = HnefataflProblem(Rey)
+    # Visor = BaseViewer()
+    # resultado = breadth_first(problema,viewer=Visor)
 
-        #resultado = astar(problema)
-    #resultado = breadth_first(problema, graph_search= True)
-    #resultado = greedy(problema, graph_search= True)
+    # Amplitud en grafo
+    # problema = HnefataflProblem(Rey)
+    # Visor = BaseViewer()
+    # resultado = breadth_first(problema,graph_search=True,viewer=Visor)
 
-#    print 'Estado meta:'
-#    print resultado.state
-#    print 'Camino:'
-#    print len(resultado.path())
-#    for accion, estado in resultado.path():
-#        print 'Movi', accion
-#        print 'Llegue a', estado
+    # Profundidad en arbol
+    # problema = HnefataflProblem(Rey)
+    # Visor = BaseViewer()
+    # resultado = depth_first(problema,viewer=Visor)
+
+    # Profundidad en grafo
+    # problema = HnefataflProblem(Rey)
+    # Visor = BaseViewer()
+    # resultado = depth_first(problema,graph_search=True,viewer=Visor)
+
+    # Avara en arbol
+    # problema = HnefataflProblem(Rey)
+    # Visor = BaseViewer()
+    # resultado = greedy(problema,viewer=Visor)
+
+    #Avara en grafo
+    #problema = HnefataflProblem(Rey)
+    #Visor = BaseViewer()
+    #resultado = greedy(problema,graph_search=True,viewer=Visor)
+
+    # A* en arbol
+    problema = HnefataflProblem(Rey)
+    Visor = BaseViewer()
+    resultado = astar(problema,viewer=Visor)
+
+    #A* en grafo
+    #problema = HnefataflProblem(Rey)
+    #Visor = BaseViewer()
+    #resultado = astar(problema,graph_search=True,viewer=Visor)
+
+    print 'Estado meta:'
+    print resultado.state
+    print 'Camino:'
+    for accion, estado in resultado.path():
+        print 'Movi', accion
+        print 'Llegue a', estado
+    print
+    print 'Estadisticas',Visor.stats
