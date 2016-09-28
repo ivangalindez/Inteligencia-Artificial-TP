@@ -3,6 +3,7 @@ from simpleai.search import (SearchProblem, hill_climbing,
                              hill_climbing_random_restarts,
                              beam, hill_climbing_stochastic,
                              simulated_annealing)
+from simpleai.search.local import simulated_annealing
 from simpleai.search.viewers import WebViewer
 
 def inicial():
@@ -63,7 +64,7 @@ class HnefataflProblem(SearchProblem):
                             sumaTotal += 3
                         else:
                             sumaTotal += 1
-        print "Value>", sumaTotal
+        # print "Value>", sumaTotal
         return sumaTotal
 
     def generate_random_state(self):
@@ -90,27 +91,30 @@ def resolver(metodo_busqueda, iteraciones, haz, reinicios):
     if metodo_busqueda == "hill_climbing_random_restarts":
         return hill_climbing_random_restarts(problema, reinicios, iteraciones)
     if metodo_busqueda == "simulated_annealing":
-        return simulated_annealing(problema, iteraciones)
+        return simulated_annealing(problema, iterations_limit=iteraciones)
 
 if __name__ == '__main__':
     problema = HnefataflProblem(inicial())
 
-    # Hill Climbing con 5 mil iteraciones
-    # result = hill_climbing(problema, 5000)
+    for i in range(10):
+        # Hill Climbing con 200 iteraciones
+        # result = hill_climbing(problema, 200)
 
-    # Hill Climbing Stichastic con 5 mil iteraciones
-    # result = hill_climbing_stochastic(problema, 5000)
+        # Hill Climbing Stichastic con 200 iteraciones
+        # result = hill_climbing_stochastic(problema, 200)
 
-    # Beam con 5 mil iteraciones y haz de 100
-    result = beam(problema, 100, 5000)
+        # Beam con 200 iteraciones y haz de 20
+        result = beam(problema, 20, 200)
 
-    # Hill Climbing Random Restarts con 5 mil iteraciones y 100 reinicios
-    # result = hill_climbing_random_restarts(problema, 100, 5000)
+        # Hill Climbing Random Restarts con 200 iteraciones y 20 reinicios
+        # result = hill_climbing_random_restarts(problema, 20, 200)
 
-    # Simulated Annealing con 5 mil iteraciones
-    # result = simulated_annealing(problema,None,5000)
+        # Simulated Annealing con 200 iteraciones
+        # result = simulated_annealing(problema, iterations_limit=200)
 
-    print 'Estado:'
-    print result.state
-    print 'Valor:'
-    print result.value
+
+        print 'Prueba numero: ',i+1
+        print 'Estado:'
+        print result.state
+        print 'Valor:'
+        print result.value
