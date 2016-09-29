@@ -28,7 +28,7 @@ class HnefataflProblem(SearchProblem):
         state = list(state)
         # el primer elemento de "action" es una tupla con las coordenadas del soldado, el segundo elemento son las coordenadas adonde se va a mover
         soldado, casilla = action
-        # Elimino la coordenada en donde se encontraba el soldado y coloco la posicion adonde se va a mover.
+        # Elimina la coordenada en donde se encontraba el soldado y coloca la posicion adonde se va a mover.
         state.remove(soldado)
         state.append(casilla)
         return tuple(state)
@@ -38,7 +38,7 @@ class HnefataflProblem(SearchProblem):
         sumaTotal = 0
         for fila in range(10):
             for columna in range(10):
-                #por cada casilla del tablero, pregunto si no hay un soldado colocado y miro hacia las casillas adyacentes
+                #por cada casilla del tablero, pregunta si no hay un soldado colocado y mira hacia las casillas adyacentes
                 if (fila, columna) not in state:
                     arriba = fila - 1
                     abajo = fila + 1
@@ -64,13 +64,12 @@ class HnefataflProblem(SearchProblem):
                             sumaTotal += 3
                         else:
                             sumaTotal += 1
-        # print "Value>", sumaTotal
         return sumaTotal
 
     def generate_random_state(self):
         estado = []
         for soldado in range(30):
-            # Genero filas y columnas aleatorias hasta que de casilla en donde no haya ningun soldado
+            # Genera filas y columnas aleatorias hasta que de casilla en donde no haya ningun soldado
             while True:
                 fila = random.randint(0, 9)
                 columna = random.randint(0, 9)
