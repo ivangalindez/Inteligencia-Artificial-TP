@@ -1,2 +1,2 @@
 1:{'a': 'bahia', 'c': 'cabina', 'b': 'escudo', 'e': 'bahia', 'd': 'bahia', 'g': 'sve', 'f': 'motor', 'i': 'cabina', 'h': 'bahia', 'k': 'sve', 'j': 'bahia', 'm': 'bahia', 'l': 'cabina', 'o': 'escudo', 'n': 'laser', 'q': 'escudo', 'p': 'bateria'}
-2:{'a': 'escudo', 'c': 'laser', 'b': 'laser', 'e': 'bahia', 'd': 'cabina', 'g': 'cabina', 'f': 'bateria', 'i': 'sve', 'h': 'cabina', 'k': 'bahia', 'j': 'laser', 'm': 'bahia', 'l': 'cabina', 'o': 'motor', 'n': 'bahia', 'q': 'escudo', 'p': 'laser'}
+2:{'a': 'escudo', 'c': 'bateria', 'b': 'laser', 'e': 'cabina', 'd': 'escudo', 'g': 'bahia', 'f': 'cabina', 'i': 'sve', 'h': 'bahia', 'k': 'bateria', 'j': 'cabina', 'm': 'cabina', 'l': 'sve', 'o': 'cabina', 'n': 'laser', 'q': 'motor', 'p': 'bahia'}
