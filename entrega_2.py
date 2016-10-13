@@ -64,7 +64,7 @@ def consumir_bateria(variables, valores):
     if 'bateria' == valores[0]:
         cantidad = 0
         for valor in valores:
-            if 'cabina' == valor or 'escudo' == valor or 'sve' == valor:
+            if 'cabina' == valor or 'escudo' == valor or 'sve' == valor or 'laser' == valor:
                 cantidad += 1
         return cantidad > 1
     return True
